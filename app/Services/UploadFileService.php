@@ -2,8 +2,7 @@
 namespace App\Services;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\File;
-use App\Repositories\FileRepository;
+use App\Models\File;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 class UploadFileService
@@ -22,7 +21,7 @@ class UploadFileService
             'url' => $file_link,
             'file_name' => $file_name,
             'description' =>  $description,
-            'type' => FileRepository::IMAGE,
+            'type' => File::IMAGE,
             
         ])->id;
         return $file_id;
