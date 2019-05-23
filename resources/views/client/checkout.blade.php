@@ -137,7 +137,7 @@
 								@foreach(Session::get('cart')->items as $key =>$item )
 								<div class="order-col">
 									<div>{{$item['qty']}}x{{$item['item']->name}} </div>
-									<div>{{$prices[$key]['price']}}(-{{$prices[$key]['discount']}}%)</div>
+									<div>{{$item['qty']*$item['item']->price*0.7}}(-30%)</div>
 								</div>
 								@endforeach
 							</div>

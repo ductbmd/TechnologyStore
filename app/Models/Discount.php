@@ -8,6 +8,14 @@ class Discount extends Model
 {
 	protected $table='discount';
     protected $fillable = [
-       'product_id','time_start','time_expired','discount','created_by','created_at','updated_at','deleted_at'
+       'time_start','time_expired','discount','created_by','created_at','updated_at','type','description'
     ];
+    public function product()
+    {
+    	return $this->hasMany(\App\Models\Product\ProductDiscount::class,'discount_id','id');
+    }
+    public function laptop()
+    {
+    	return $this->hasMany(\App\Models\Laptop\LaptopDiscount::class,'discount_id','id');
+    }
 }

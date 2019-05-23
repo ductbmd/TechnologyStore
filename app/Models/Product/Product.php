@@ -30,4 +30,16 @@ class Product extends Model
     {
     	return $this->hasMany(\App\Models\Product\ProductDetail::class,'product_id','id');
     }
+    public function category()
+    {
+        return $this->hasMany(\App\Models\Product\ProductCateory::class,'product_id','id');
+    }
+    public function discount()
+    {
+        return $this->hasMany(\App\Models\Product\ProductDiscount::class,'product_id','id');
+    }
+    public function maxDiscount()
+    {
+        return $this->discount();
+    }
 }

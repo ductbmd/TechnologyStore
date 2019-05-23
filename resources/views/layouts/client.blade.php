@@ -112,20 +112,42 @@
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
-											
-											@foreach(Session::get('cart')->items as $item )
+											@if(Session::get('cart')->items)
+											@foreach(Session::get('cart')->items as $key=> $item )
 											<div class="product-widget">
 												<div class="product-img">
+													@if($item['item']->files[0]->file)
+													<img src="{{env("SERVER_HOST").$item['item']->files[0]->file->url}}" alt="">
+													@else
 													<img src="{{asset('electro/img/product01.png')}}" alt="">
+													@endif
 												</div>
 												<div class="product-body">
-													<h3 class="product-name"><a href="#">{{$item['item']->name}}</a></h3>
+													<h3 class="product-name"><a href="/client/product/{{$item['item']->id}}">{{$item['item']->name}}</a></h3>
 													<h4 class="product-price"><span class="qty">{{$item['qty']}}x</span>${{$item['item']->price}}</h4>
 												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
+												<button class="delete" onclick="subToCart({{$key}})"><i class="fa fa-close"></i></button>
 											</div>
 											@endforeach
-											
+											@endif
+											@if(Session::get('cart')->laptops)
+											@foreach(Session::get('cart')->laptops as $key=> $laptop )
+											<div class="product-widget">
+												<div class="product-img">
+													@if($laptop['item']->files[0]->file)
+													<img src="{{env("SERVER_HOST").$laptop['item']->files[0]->file->url}}" alt="">
+													@else
+													<img src="{{asset('electro/img/product01.png')}}" alt="">
+													@endif
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a href="/client/laptop/{{$key}}">{{$laptop['item']->name}}</a></h3>
+													<h4 class="product-price"><span class="qty">{{$laptop['qty']}}x</span>${{$laptop['item']->price}}</h4>
+												</div>
+												<button class="delete" onclick="subLaptopToCart({{$key}})"><i class="fa fa-close"></i></button>
+											</div>
+											@endforeach
+											@endif
 											<!-- <div class="product-widget">
 												<div class="product-img">
 													<img src="{{asset('electro/img/product02.png')}}" alt="">
@@ -143,7 +165,7 @@
 										</div>
 										
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
+											<a href="{{route('client.viewcart')}}">View Cart</a>
 											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>

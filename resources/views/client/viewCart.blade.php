@@ -47,17 +47,33 @@
 									</tr>
 								</thead>
 								<tbody>
+									@if(Session::get('cart')->items)
 									@foreach(Session::get('cart')->items as $key=>$item )
 								    <tr>
 								      <th scope="row">{{$loop->index+1}}</th>
 								      <td>{{$item['item']->name}}</td>
 								      <td>{{$item['qty']}}</td>
 								      <td>${{$item['item']->price}}</td>
-								      <td>${{$prices[$key]['more']}}</td>
-								      <td>{{$prices[$key]['discount']}}%</td>
+								      <td>$0</td>
+								      <td>30%</td>
 
 								    </tr>
 								    @endforeach
+								    @endif
+
+								    @if(Session::get('cart')->laptops)
+									@foreach(Session::get('cart')->laptops as $key=>$item )
+								    <tr>
+								      <th scope="row">{{$loop->index+1}}</th>
+								      <td>{{$item['item']->name}}</td>
+								      <td>{{$item['qty']}}</td>
+								      <td>${{$item['item']->price}}</td>
+								      <td>$0</td>
+								      <td>30%</td>
+
+								    </tr>
+								    @endforeach
+								    @endif
 								  </tbody>
 							</table>
 							
@@ -81,12 +97,22 @@
 							</div>
 
 							<div class="order-products">
+								@if(Session::get('cart')->items)
 								@foreach(Session::get('cart')->items as $key =>$item )
 								<div class="order-col">
 									<div>{{$item['qty']}}x{{$item['item']->name}} </div>
-									<div>{{$prices[$key]['price']}}(-{{$prices[$key]['discount']}}%)</div>
+									<div>{{$item['item']->price*0.7}}</div>
 								</div>
 								@endforeach
+								@endif
+								@if(Session::get('cart')->laptops)
+								@foreach(Session::get('cart')->laptops as $key =>$item )
+								<div class="order-col">
+									<div>{{$item['qty']}}x{{$item['item']->name}} </div>
+									<div>{{$item['item']->price*0.7}}</div>
+								</div>
+								@endforeach
+								@endif
 							</div>
 							<div class="order-col">
 								<div>Shiping</div>
@@ -99,7 +125,7 @@
 						</div>
 						
 						
-						<a href="#" class="primary-btn order-submit">Order>>></a>
+						<a href="{{route('client.checkout')}}" class="primary-btn order-submit">Order>>></a>
 					</div>
 					<!-- /Order Details -->
 				</div>
