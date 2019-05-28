@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function getAddToCart(Request $request,$id)
     {
         // dd(Session::get('cart')->items);
-        $product=$this->model->with('files.file')->find($id);
+        $product=$this->model->with('files.file')->with('discount')->find($id);
         $oldCart=Session::has('cart')?Session::get('cart'): null;
         $cart=new Cart($oldCart);
         $cart->addProduct($product,$request->detail_id,$request->qty);

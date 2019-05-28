@@ -34,6 +34,8 @@
  		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
  		<![endif]-->
 	 <script src="{{asset('electro/js/cart.js')}}"></script>
+	 <script src="{{asset('electro/js/filter.js')}}"></script>
+	 <script src="{{asset('electro/js/order.js')}}"></script>
     </head>
 	<body>
 		<!-- HEADER -->
@@ -124,7 +126,7 @@
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="/client/product/{{$item['item']->id}}">{{$item['item']->name}}</a></h3>
-													<h4 class="product-price"><span class="qty">{{$item['qty']}}x</span>${{$item['item']->price}}</h4>
+													<h4 class="product-price"><span class="qty">{{$item['qty']}}x</span>${{$item['item']->price*(1-$item['item']->discount->discount/100)}}</h4>
 												</div>
 												<button class="delete" onclick="subToCart({{$key}})"><i class="fa fa-close"></i></button>
 											</div>

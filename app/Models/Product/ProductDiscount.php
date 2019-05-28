@@ -3,7 +3,7 @@
 namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class ProductDiscount extends Model
 {
 	public $timestamps = false;
@@ -13,10 +13,11 @@ class ProductDiscount extends Model
     ];
     public function product()
     {
-    	return $this->hasMany(\App\Models\Product\Product::class,'id','product_id');
+    	return $this->hasOne(\App\Models\Product\Product::class,'id','product_id');
     }
     public function discount()
     {
-    	return $this->hasMany(\App\Models\Discount::class,'id','discount_id');
+    	return $this->hasOne(\App\Models\Discount::class,'id','discount_id');
     }
+    
 }

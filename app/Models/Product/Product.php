@@ -16,7 +16,7 @@ class Product extends Model
     public static $type=[self::mobile=>'Mobile',self::laptop=>'Laptop'];	
     protected $table='product';
     protected $fillable = [
-        'company_id','name','description','size','OS','camera_front','camera_back','CPU','RAM','ROM','memory_card','SIM_card','Pin','GPU','headphone_jack','type','price'
+        'company_id','name','description','size','OS','camera_front','camera_back','CPU','RAM','ROM','memory_card','SIM_card','Pin','GPU','headphone_jack','type','price','discount_id'
     ];
     public function files()
     {
@@ -36,10 +36,10 @@ class Product extends Model
     }
     public function discount()
     {
-        return $this->hasMany(\App\Models\Product\ProductDiscount::class,'product_id','id');
+        return $this->hasOne(\App\Models\Discount::class,'id','discount_id');
     }
     public function maxDiscount()
     {
-        return $this->discount();
+        return $this->discount()->with('discount');
     }
 }

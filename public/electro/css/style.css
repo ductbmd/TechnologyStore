@@ -1235,7 +1235,9 @@ textarea.input {
 .checkbox-filter .input-radio label small, .checkbox-filter .input-checkbox label small {
   color: #8D99AE;
 }
-
+.button .badge .badge-pill .badge-success{
+  color: #8D99AE;
+}
 /*-- Price Filter --*/
 
 #price-slider {

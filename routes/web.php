@@ -30,3 +30,4 @@ Route::get('/add-to-cart/{id}',['as'=>'product.addtocart','uses'=>'ProductContro
 Route::get('/sub-to-cart/{id}',['as'=>'product.subtocart','uses'=>'ProductController@getSubToCart']);
 Route::get('/add-laptop-to-cart/{id}',['as'=>'laptop.addtocart','uses'=>'LaptopController@getAddToCart']);
 Route::get('/sub-laptop-to-cart/{id}',['as'=>'laptop.subtocart','uses'=>'LaptopController@getSubToCart']);
+Route::post('/order',['as'=>'place.order','uses'=>'OrderController@order']);

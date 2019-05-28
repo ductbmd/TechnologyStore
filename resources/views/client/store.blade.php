@@ -32,16 +32,19 @@
 					<!-- ASIDE -->
 					<div id="aside" class="col-md-3">
 						<!-- aside Widget -->
+						<form action="{{route('client.store')}}">
 						<div class="aside">
-							<h3 class="aside-title">Categories</h3>
+								@csrf
+							<h3 class="aside-title">Categories <button type="submit" class="badge badge-pill badge-success" style="background-color: #b92d74">Lọc</button></h3>
+							
 							<div class="checkbox-filter">
 								@foreach($categories as $category)
 								<div class="input-checkbox">
-									<input type="checkbox" id="{{$category->id}}">
+									<input class="duc" name="category_id[]" value="{{$category->id}}" type="checkbox" id="{{$category->id}}" @if(Request::get('category_id')!=null && in_array($category->id, Request::get('category_id'))) checked @endif>
 									<label for="{{$category->id}}">
 										<span></span>
 										{{$category->name}}
-										<small>(3)</small>
+										<small>({{$category->count}})</small>
 									</label>
 								</div>
 								@endforeach
@@ -56,18 +59,19 @@
 							<div class="price-filter">
 								<div id="price-slider"></div>
 								<div class="input-number price-min">
-									<input id="price-min" type="number">
+									<input id="price-min" type="number" name="price_min">
 									<span class="qty-up">+</span>
 									<span class="qty-down">-</span>
 								</div>
 								<span>-</span>
 								<div class="input-number price-max">
-									<input id="price-max" type="number">
+									<input id="price-max" type="number" name="price_max">
 									<span class="qty-up">+</span>
 									<span class="qty-down">-</span>
 								</div>
 							</div>
 						</div>
+					</form>
 						<!-- /aside Widget -->
 
 						<!-- aside Widget -->
@@ -125,42 +129,28 @@
 							</div>
 						</div>
 						<!-- /aside Widget -->
- -->
+ 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Top selling</h3>
+							<h3 class="aside-title">Khuyễn mãi lớn</h3>
+							@foreach($topsells as $key=>$product)
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="./img/product01.png" alt="">
+									@if($product->files[0]->file)
+										<img src="{{env("SERVER_HOST").$product->files[0]->file->url}}" alt="">
+										@else
+										<img src="{{asset('electro/img/product01.png')}}" alt="">
+										@endif
 								</div>
 								<div class="product-body">
-									<p class="product-category">Category</p>
-									<h3 class="product-name"><a href="#">product name goes here</a></h3>
-									<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									
+									<h3 class="product-name"><a href="{{route('client.product',$product->id)}}">{{$product->name}}</a></h3>
+									<h4 class="product-price">${{$product->price*(1-$product->discount->discount/100)}}  <del class="product-old-price">${{$product->price}}</del></h4>
 								</div>
 							</div>
-
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product02.png" alt="">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Category</p>
-									<h3 class="product-name"><a href="#">product name goes here</a></h3>
-									<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								</div>
-							</div>
-
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product03.png" alt="">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Category</p>
-									<h3 class="product-name"><a href="#">product name goes here</a></h3>
-									<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								</div>
-							</div>
+							@if($key==4) @break @endif
+							@endforeach
+							
 						</div>
 						<!-- /aside Widget -->
 					</div>
@@ -172,18 +162,20 @@
 						<div class="store-filter clearfix">
 							<div class="store-sort">
 								<label>
-									Sort By:
-									<select class="input-select">
-										<option value="0">Popular</option>
-										<option value="1">Position</option>
+									Sắp xếp:
+									<select class="input-select" id="product_sortBy" onchange="filterProduct()">
+										<!-- <option value="popular">Thông dụng</option> -->
+										<option value="asc" @if(Request::get('product_sortBy')=='asc') selected @endif>Giá tăng</option>
+										<option value="desc" @if(Request::get('product_sortBy')=='desc') selected @endif>Giá giảm</option>
 									</select>
 								</label>
 
 								<label>
-									Show:
-									<select class="input-select">
-										<option value="0">20</option>
-										<option value="1">50</option>
+									Hiển thị:
+									<select class="input-select" id="product_paginate" onchange="filterProduct()">
+										<option value="9" @if(Request::get('product_paginate')==9) selected @endif>9</option>
+										<option value="12" @if(Request::get('product_paginate')==12) selected @endif>12</option>
+										<option value="30" @if(Request::get('product_paginate')==30) selected @endif>30</option>
 									</select>
 								</label>
 							</div>
@@ -208,14 +200,20 @@
 										<img src="{{asset('electro/img/product01.png')}}" alt="">
 										@endif
 										<div class="product-label">
-											<span class="sale">-30%</span>
+											@if(!empty($product->discount))
+											<span class="sale">-{{$product->discount->discount}}%</span>
+											@endif
 											<span class="new">NEW</span>
 										</div>
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
 										<h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">${{$product->price}}</del></h4>
+										@if(!empty($product->discount))
+										<h4 class="product-price">${{$product->price*(1-$product->discount->discount/100)}} <del class="product-old-price">${{$product->price}}</del></h4>
+										@else
+										<h4 class="product-price">${{$product->price}} </h4>
+										@endif
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -224,9 +222,9 @@
 											<i class="fa fa-star"></i>
 										</div>
 										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<a class="quick-view" ><i class="fa fa-eye"></i><span class="tooltipp"> View more</span></a>
+											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">thêm vào danh sách yêu thích</span></button>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào so sánh</span></button>
+											<a class="quick-view" href="{{route('client.product',$product->id)}}" title="Click để xem thêm"><i class="fa fa-eye"></i></a>
 										</div>
 									</div>
 									<div class="add-to-cart">

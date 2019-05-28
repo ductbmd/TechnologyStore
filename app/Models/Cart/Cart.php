@@ -28,10 +28,10 @@ class Cart
     		}
     	}
     	$storeItem['qty']+=$qty;
-    	$storeItem['price']=$item->price * $storeItem['qty'];
+    	$storeItem['price']=($item->price *(1-$item->discount->discount/100))* $storeItem['qty'];
     	$this->items[$id]=$storeItem;
     	$this->totalQty+=$qty;
-    	$this->totalPrice+=$item->price*$qty;
+    	$this->totalPrice+=($item->price *(1-$item->discount->discount/100))*$qty;
     }
     public function subProduct($id)
     {

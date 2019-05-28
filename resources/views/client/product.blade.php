@@ -69,7 +69,7 @@
 								<a class="review-link" href="#">10 Review(s) | Add your review</a>
 							</div>
 							<div>
-								<h3 class="product-price">${{$product->price}} <del class="product-old-price">${{$product->price+100}}</del></h3>
+								<h3 class="product-price">${{$product->price*(1-$product->discount->discount/100)}} <del class="product-old-price">${{$product->price}}</del></h3>
 								<span class="product-available">In Stock</span>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
