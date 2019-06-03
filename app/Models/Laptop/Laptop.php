@@ -14,7 +14,7 @@ class Laptop extends Model
     public $timestamps = false;
     protected $table='laptop';
     protected $fillable = [
-        'name','CPU','RAM','ROM','monitor','connection_port','GPU','specical','design','size','OS','price','description'
+        'name','CPU','RAM','ROM','monitor','connection_port','GPU','specical','design','size','OS','price','description','qty','discount_id'
     ];
     public function files()
     {
@@ -26,7 +26,7 @@ class Laptop extends Model
     }
     public function discount()
     {
-        return $this->hasMany(\App\Models\Laptop\LaptopDiscount::class,'laptop_id','id');
+        return $this->hasOne(\App\Models\Discount::class,'id','discount_id');
     }
     
 }

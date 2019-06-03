@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('layouts/client');
-});
+})->name('index');
 
 Auth::routes();
 
@@ -26,8 +26,13 @@ Route::get('client/laptop/{id}',['as'=>'client.laptop','uses'=>'ClientController
 Route::get('client/checkout',['as'=>'client.checkout','uses'=>'ClientController@checkout']);
 Route::get('client/viewcart',['as'=>'client.viewcart','uses'=>'ClientController@viewCart']);
 Route::get('client/store',['as'=>'client.store','uses'=>'ClientController@storeProduct']);
+Route::get('client/storeLaptop',['as'=>'client.storelaptop','uses'=>'ClientController@storeLaptop']);
 Route::get('/add-to-cart/{id}',['as'=>'product.addtocart','uses'=>'ProductController@getAddToCart']);
 Route::get('/sub-to-cart/{id}',['as'=>'product.subtocart','uses'=>'ProductController@getSubToCart']);
 Route::get('/add-laptop-to-cart/{id}',['as'=>'laptop.addtocart','uses'=>'LaptopController@getAddToCart']);
 Route::get('/sub-laptop-to-cart/{id}',['as'=>'laptop.subtocart','uses'=>'LaptopController@getSubToCart']);
 Route::post('/order',['as'=>'place.order','uses'=>'OrderController@order']);
+Route::get('/placeOderSuccess', function () {
+    return view('client/placeOrderSuccess');
+});
+Route::post('/comment',['as'=>'comment.product','uses'=>'ClientController@comment']);

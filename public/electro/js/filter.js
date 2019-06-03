@@ -19,8 +19,11 @@
 //             });
 // }
 function filterProduct(sel) {
-	var arrStr = encodeURIComponent(JSON.stringify(getValueUsingClass()));
-	link="/client/store?";
+	// var arrStr = encodeURIComponent(JSON.stringify(getValueUsingClass()));
+	var link="/client/store?";
+		if(sel==="laptop"){
+		link="/client/storeLaptop?";
+		}
 	category_id=getValueUsingClass();
 	if(category_id.length){
 		for (var i = 0; i <category_id.length; i++) {

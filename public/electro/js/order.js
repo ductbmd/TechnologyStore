@@ -34,7 +34,7 @@ function placeorder() {
       data:data,
       dataType: 'JSON',
       success:function(data) {
-        
+        window.location.href = "/placeOderSuccess";
         console.log(data);
      },
      error: function (reject) {

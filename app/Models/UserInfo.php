@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserInfo extends Model
 {
-	protected $table='order_detail';
+	protected $table='user_info';
 	
     protected $fillable = [
-       'user_id','sex','birth','address','avatar','first_name','last_name','city','country','zip_code','phone'
+       'user_id','sex','birth','address','avatar','name','city','country','zip_code','phone'
     ];
 }

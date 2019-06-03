@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $table='order';
     protected $fillable = [
-       'user_id','status','total_amount','note'
+       'user_id','status','total_amount','note','payment'
     ];
     public function user()
     {

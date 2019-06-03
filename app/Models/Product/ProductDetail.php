@@ -11,4 +11,8 @@ class ProductDetail extends Model
     protected $fillable = [
        'product_id','color','price','configuration','qty'
     ];
+    public function product()
+    {
+    	return $this->hasOne(\App\Models\Product\Product::class,'id','product_id');
+    }
 }

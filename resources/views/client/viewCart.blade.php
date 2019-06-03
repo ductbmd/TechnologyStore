@@ -68,6 +68,7 @@
 								      <td>{{$item['qty']}}</td>
 								      <td>${{$item['item']->price}}</td>
 								      <td>{{$item['item']->discount->discount}}%</td>
+								      <td>{{$item['price']}}</td>
 								    </tr>
 								    @endforeach
 								    @endif

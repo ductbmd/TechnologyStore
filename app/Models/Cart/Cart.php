@@ -50,10 +50,10 @@ class Cart
             }
         }
         $storeItem['qty']+=$qty;
-        $storeItem['price']=$item->price * $storeItem['qty'];
+        $storeItem['price']=($item->price *(1-$item->discount->discount/100))* $storeItem['qty'];
         $this->laptops[$item->id]=$storeItem;
         $this->totalQty+=$qty;
-        $this->totalPrice+=$item->price*$qty;
+        $this->totalPrice+=($item->price *(1-$item->discount->discount/100))*$qty;
     }
     public function subLaptop($id)
     {

@@ -32,7 +32,7 @@ class Product extends Model
     }
     public function category()
     {
-        return $this->hasMany(\App\Models\Product\ProductCateory::class,'product_id','id');
+        return $this->hasMany(\App\Models\Product\ProductCategory::class,'product_id','id');
     }
     public function discount()
     {
