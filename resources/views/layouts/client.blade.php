@@ -36,6 +36,7 @@
 	 <script src="{{asset('electro/js/cart.js')}}"></script>
 	 <script src="{{asset('electro/js/filter.js')}}"></script>
 	 <script src="{{asset('electro/js/order.js')}}"></script>
+	 <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
 	<body>
 		<!-- HEADER -->
@@ -105,7 +106,7 @@
 								<div class="dropdown" id="cart">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
+										<span>Giỏ hàng</span>
 										@if(!Session::get('cart'))
 										<div class="qty">0</div>
 										</a>
@@ -162,13 +163,13 @@
 											</div> -->
 										</div>
 										<div class="cart-summary">
-											<small>{{Session::get('cart')->totalQty}} Item(s) selected</small>
-											<h5>SUBTOTAL: ${{Session::get('cart')->totalPrice}}</h5>
+											<small>{{Session::get('cart')->totalQty}} sản phẩm được chọn</small>
+											<h5>TỔNG: ${{Session::get('cart')->totalPrice}}</h5>
 										</div>
 										
 										<div class="cart-btns">
-											<a href="{{route('client.viewcart')}}">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="{{route('client.viewcart')}}">Chi tiết</a>
+											<a href="{{route('client.checkout')}}">Thanh toán  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 									@endif
@@ -203,10 +204,10 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
-						<li><a href="#">Categories</a></li>
+						<li class="active"><a href="{{route('client.index')}}">Home</a></li>
+						<li><a href="#">Khuyến mãi hot</a></li>
 						<li><a href="#">Laptops</a></li>
+						<li><a href="{{route('client.store')}}">Điện thoại</a></li>
 						<li><a href="#">Smartphones</a></li>
 						<li><a href="#">Cameras</a></li>
 						<li><a href="#">Accessories</a></li>
@@ -242,7 +243,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="newsletter">
-							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+							<p>Đăng ký để nhận thông báo <strong>KHUYẾN MÃI</strong></p>
 							<form>
 								<input class="input" type="email" placeholder="Enter Your Email">
 								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
@@ -280,12 +281,12 @@
 					<div class="row">
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<h3 class="footer-title">About Me</h3>
+								<p>Đây là đồ án 3 của Tô Bá Minh Đức. Đề tài :web thương mại điện tử.</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i> Số 17 Giải Phóng</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>+084-09x-xx-xxx</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>duc.tbmd@gmail.com</a></li>
 								</ul>
 							</div>
 						</div>

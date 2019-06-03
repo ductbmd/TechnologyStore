@@ -35,36 +35,36 @@
 								<h3 class="title">Billing address</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="First Name" id="first-name">
+								<input class="input" type="text" name="name" placeholder="Họ tên " id="name">
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<input class="input" type="text" name="last-name" placeholder="Last Name" id="last-name">
-							</div>
+							</div> -->
 							<div class="form-group">
 								<input class="input" type="email" name="email" placeholder="Email" id="email">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Address" id="address">
+								<input class="input" type="text" name="address" placeholder="Địa chỉ" id="address">
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<input class="input" type="text" name="city" placeholder="City" id="city">
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="country" placeholder="Country" id="country">
+							</div> -->
+							<div class="form-group">
+								<input class="input" type="text" name="zip-code" placeholder="Mã bưu chính" id="zip-code">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="zip-code" placeholder="ZIP Code" id="zip-code">
-							</div>
-							<div class="form-group">
-								<input class="input" type="tel" name="tel" placeholder="Telephone" id="telephone">
+								<input class="input" type="tel" name="tel" placeholder="Sô điện thoại" id="telephone">
 							</div>
 							@if(!Auth::check())
 							<div class="form-group">
 								<div class="input-checkbox">
-									<input type="checkbox" id="create-account" >
+									<input type="checkbox" id="create-account" value="create">
 									<label for="create-account">
 										<span></span>
-										Tạo tài khoản?<a href="#"> Hoặc đăng nhập</a>
+										Tạo tài khoản?<a href="#"> Hoặc đăng nhập</a>(nếu bạn mua hàng khi đã đăng nhập thông tin sẽ tự động được điền)
 									</label>
 									<div class="caption">
 										<p>Nhập mật khẩu, tên đăng nhập sẽ là email của bạn!</p>
@@ -73,7 +73,7 @@
 								</div>
 							</div>
 							@else
-							<input class="input" type="hidden" name="password" placeholder="Enter Your Password" id="pass" >
+							<input class="input" type="hidden" name="password" placeholder="Tạo mật khẩu mới" id="pass" >
 							@endif
 						</div>
 						<!-- /Billing Details -->
@@ -129,12 +129,12 @@
 					<!-- Order Details -->
 					<div class="col-md-5 order-details">
 						<div class="section-title text-center">
-							<h3 class="title">Your Order</h3>
+							<h3 class="title">Hóa đơn </h3>
 						</div>
 						<div class="order-summary">
 							<div class="order-col">
-								<div><strong>PRODUCT</strong></div>
-								<div><strong>TOTAL</strong></div>
+								<div><strong>SẢN PHẨM</strong></div>
+								<div><strong>TỔNG</strong></div>
 							</div>
 
 							<div class="order-products">
@@ -156,43 +156,43 @@
 								@endif
 							</div>
 							<div class="order-col">
-								<div>Shiping</div>
-								<div><strong>FREE</strong></div>
+								<div>Giao hàng</div>
+								<div><strong>MIỄN PHÍ</strong></div>
 							</div>
 							<div class="order-col">
-								<div><strong>TOTAL</strong></div>
+								<div><strong>TỔNG </strong></div>
 								<div><strong class="order-total">${{$total}}</strong></div>
 							</div>
 						</div>
 						<div class="payment-method">
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-1">
+								<input type="radio" name="payment" id="payment-1" value="THE">
 								<label for="payment-1">
 									<span></span>
-									Direct Bank Transfer
+									Chuyển Khoản Ngân Hàng
 								</label>
 								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+									<p>Khi bạn ấn thanh toán hóa đơn vui lòng gửi đúng số tiền theo số tài khoản 1903 4056 584466.Chúng tôi sẽ kiểm tra và đơn hàng của bạn sẽ được giao về đúng địa chỉ trong hóa đơn.</p>
 								</div>
 							</div>
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-2">
+								<input type="radio" name="payment" id="payment-2" value="BUUDIEN">
 								<label for="payment-2">
 									<span></span>
-									Cheque Payment
+									Thanh toán khi nhận hàng
 								</label>
 								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+									<p>Bạn sẽ thanh toán cho bưu điện khi nhận được sản phẩm.</p>
 								</div>
 							</div>
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-3">
+								<input type="radio" name="payment" id="payment-3" value="TAIQUAY">
 								<label for="payment-3">
 									<span></span>
-									Paypal System
+									Thánh toán tại quầy
 								</label>
 								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+									<p>Tới cửa hàng của chúng tôi và thanh toán trực tiếp tại quầy.Chúng tôi sẽ giữ sản phẩm cho bạn trong 24 giờ</p>
 								</div>
 							</div>
 						</div>
@@ -200,10 +200,10 @@
 							<input type="checkbox" id="terms">
 							<label for="terms">
 								<span></span>
-								I've read and accept the <a href="#">terms & conditions</a>
+								Tôi đã đọc và đồng ý với  <a href="#">Điều khoản & điều kiện</a> của cửa hàng
 							</label>
 						</div>
-						<a onclick="placeorder()"  class="primary-btn order-submit">Place order</a>
+						<a onclick="placeorder()"  class="primary-btn order-submit">Đặt hàng</a>
 					</div>
 					<!-- /Order Details -->
 				</div>

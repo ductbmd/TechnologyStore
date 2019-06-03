@@ -1,15 +1,30 @@
 function placeorder() {
-   data={"_token": "{{ csrf_token() }}"};
-   data.first_name=$('#first-name').val();
-   data.last_name=$('#last-name').val();
+   if(!$("#terms").is(":checked")){
+                alert("Đọc điều khoản và đồng ý với chúng tôi.");
+                return
+            }
+   $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+   data={};
+   data.name=$('#name').val();
+   // data.last_name=$('#last-name').val();
    data.email=$('#email').val();
    data.address=$('#address').val();
-   data.city=$('#city').val();
-   data.country=$('#country').val();
+   // data.city=$('#city').val();
+   // data.country=$('#country').val();
    data.zip_code=$('#zip-code').val();
    data.telephone=$('#telephone').val();
    data.pass=$('#pass').val();
-   data.pass=$('#note').val();
+   data.note=$('#note').val();
+   data.payment=$('input[name=payment]:checked').val();
+   if($("#create-account").is(":checked")){
+      data.create="yes";
+   }else{
+      data.create="no";
+   }
 
    console.log(data);
 
@@ -20,7 +35,10 @@ function placeorder() {
       dataType: 'JSON',
       success:function(data) {
         
-        console.log("ok");
+        console.log(data);
+     },
+     error: function (reject) {
+         console.log(reject);
      }
   });
 }

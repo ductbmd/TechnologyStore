@@ -59,7 +59,8 @@
 							<div class="price-filter">
 								<div id="price-slider"></div>
 								<div class="input-number price-min">
-									<input id="price-min" type="number" name="price_min">
+									<input id="price-min" type="number" name="price_min" @if(request()->get('price_min')) value="{{request()->get('price_min')}}"  @endif> 
+
 									<span class="qty-up">+</span>
 									<span class="qty-down">-</span>
 								</div>

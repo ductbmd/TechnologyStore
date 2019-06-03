@@ -21,7 +21,8 @@ class OrderController extends Controller
     }
     public function order(Request $request)
     {
-    	return "ok";
+    	
+    	return response()->json(['success' => true,'message'=>$request->name], 200);
     	// DB::beginTransaction();
     	// try {
     		
