@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/client');
-})->name('index');
+Route::get('/', 'ClientController@index')->name('index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ClientController@index')->name('home');
 Route::resource('product','ProductController');
 Route::resource('CompanyController','CompanyController');
 Route::get('/index',['as'=>'client.index','uses'=>'ClientController@index']);

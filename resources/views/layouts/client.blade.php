@@ -205,12 +205,9 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="{{route('client.index')}}">Home</a></li>
-						<li><a href="#">Khuyến mãi hot</a></li>
 						<li><a href="{{route('client.storelaptop')}}">Máy tính xách tay</a></li>
 						<li><a href="{{route('client.store')}}">Điện thoại</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
+						
 					</ul>
 					<!-- /NAV -->
 				</div>

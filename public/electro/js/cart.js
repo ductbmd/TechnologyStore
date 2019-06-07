@@ -18,13 +18,18 @@ function addToCart(id,detail) {
   if(!detail){
     detail=$( "#detail" ).val();
   }
+  var qty=1;
+  console.log(qty);
+  if($('#qty').val()>1){
+    qty=$('#qty').val();
+  }
   $.ajax({
    type:'GET',
    url:'/add-to-cart/'+id,
    data:
    {
     "_token": "{{ csrf_token() }}",
-    'qty': 1,
+    'qty': qty,
     'detail_id':detail
   },
   success:function(data) {
@@ -50,13 +55,18 @@ function subToCart(id) {
 });
 }
 function addLaptopToCart(id) {
+  var qty=1;
+  if($('#qty').val()>1){
+    qty=$('#qty').val();
+  }
+
   $.ajax({
    type:'GET',
    url:'/add-laptop-to-cart/'+id,
    data:
    {
      "_token": "{{ csrf_token() }}",
-     'qty': $('#qty').val(),
+     'qty': qty,
      
    },
    success:function(data) {

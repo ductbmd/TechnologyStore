@@ -36,7 +36,13 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client.index');
+        $newPhones=$this->product->with('discount')->with('files.file')->with('details')->orderBy('created_at')->take(6)->get();
+        $newLaptops=$this->laptop->with('discount')->with('files.file')->orderBy('created_at')->take(5)->get();
+        
+        return view('client.index')->with([
+            'newLaptops'=>$newLaptops,
+            'newPhones'=>$newPhones
+        ]);
     }
     public function product($id){
         $product=$this->product->with('files.file')->with('company')->with('discount')->with('details')->with('category')->where('id',$id)->first();
@@ -264,7 +270,7 @@ public function Comment(Request $request)
 {
     $input=$request->except("_token");
     Comment::Create($input);
-    if($input['type']){
+    if($request->type){
         return redirect()->route('client.laptop',$request->product_id);
     }
     return redirect()->route('client.product',$request->product_id);
