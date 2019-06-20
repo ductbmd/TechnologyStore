@@ -46,7 +46,7 @@
 				<div class="container">
 					<ul class="header-links pull-left">
 						<li><a href="#"><i class="fa fa-phone"></i> +081-0333-798-800</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> duc.tbmd@gmail.com</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> quangchung@gmail.com</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i> 17 Giai Phong Street</a></li>
 					</ul>
 					<ul class="header-links pull-right">
@@ -279,11 +279,11 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Me</h3>
-								<p>Đây là đồ án 3 của Tô Bá Minh Đức. Đề tài :web thương mại điện tử.</p>
+								<p>Đây là đồ án 3 của Nguyễn Quang Chung. Đề tài :web thương mại điện tử.</p>
 								<ul class="footer-links">
 									<li><a href="#"><i class="fa fa-map-marker"></i> Số 17 Giải Phóng</a></li>
 									<li><a href="#"><i class="fa fa-phone"></i>+084-09x-xx-xxx</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>duc.tbmd@gmail.com</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>quangchung@gmail.com</a></li>
 								</ul>
 							</div>
 						</div>
